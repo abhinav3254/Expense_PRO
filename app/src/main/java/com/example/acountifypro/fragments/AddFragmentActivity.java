@@ -91,6 +91,8 @@ public class AddFragmentActivity extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(view.getContext(), "Expense", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(view.getContext(),DataOneActivity.class);
+                startActivity(intent);
             }
         });
 
