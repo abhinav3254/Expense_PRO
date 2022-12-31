@@ -4,53 +4,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".frames.AddFragment">
+    tools:context=".frames.AddFragment"
+    >
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/add_linear_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="title"
-                android:padding="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+            <TextView
+                android:id="@+id/add_in"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Income"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/black"
                 />
-
-            <EditText
-                android:id="@+id/amount"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="amount"
-                android:padding="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/save_btn"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:text="Save"
-                android:textAllCaps="false"
-                android:layout_margin="20dp"
-                app:cornerRadius="10dp"
+            <TextView
+                android:id="@+id/add_ex"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Expense"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/black"
                 />
 
         </LinearLayout>
 
-    </ScrollView>
+        <FrameLayout
+            android:layout_marginTop="60dp"
+            android:id="@+id/frame_add"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </FrameLayout>

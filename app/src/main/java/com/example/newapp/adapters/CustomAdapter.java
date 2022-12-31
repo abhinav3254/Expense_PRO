@@ -11,18 +11,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newapp.R;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
     Context context;
-    private ArrayList expense_title,expense_amount;
+    private ArrayList expense_title,expense_amount,expense_date;
 
-    public CustomAdapter(Context context, ArrayList expense_title, ArrayList expense_amount) {
+    public CustomAdapter(Context context, ArrayList expense_title, ArrayList expense_amount,ArrayList expense_date) {
         this.context = context;
         this.expense_title = expense_title;
         this.expense_amount = expense_amount;
+        this.expense_date = expense_date;
     }
 
     @NonNull
@@ -41,6 +43,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
         holder.custom_title.setText(String.valueOf(expense_title.get(position)));
         holder.custom_amount.setText(String.valueOf(expense_amount.get(position)));
+        holder.custom_date.setText(String.valueOf(expense_date.get(position)));
+
+        String ans = String.valueOf(expense_amount.get(position));
+
+        if (Double.parseDouble(ans)<0) {
+            holder.custom_amount.setTextColor(android.graphics.Color.rgb(253, 138, 138));
+        }
 
     }
 
@@ -51,13 +60,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView custom_amount,custom_title;
+        TextView custom_amount,custom_title,custom_date;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             custom_amount = itemView.findViewById(R.id.custom_amount);
             custom_title = itemView.findViewById(R.id.custom_title);
+            custom_date = itemView.findViewById(R.id.custom_date);
 
         }
     }

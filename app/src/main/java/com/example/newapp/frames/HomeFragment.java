@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
 
     View view;
-    ArrayList<String> expense_id,expense_title,expense_amount;
+    ArrayList<String> expense_id,expense_title,expense_amount,expense_date;
     DBHelper dbHelper;
     CustomAdapter customAdapter;
 
@@ -36,10 +36,11 @@ public class HomeFragment extends Fragment {
         expense_id = new ArrayList<>();
         expense_title = new ArrayList<>();
         expense_amount = new ArrayList<>();
+        expense_date = new ArrayList<>();
 
         storeDataInArrays();
 
-        customAdapter = new CustomAdapter(view.getContext(),expense_title,expense_amount);
+        customAdapter = new CustomAdapter(view.getContext(),expense_title,expense_amount,expense_date);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
@@ -54,7 +55,8 @@ public class HomeFragment extends Fragment {
             while (cursor.moveToNext()) {
                 expense_id.add(cursor.getString(0));
                 expense_title.add(cursor.getString(1));
-                expense_amount.add(cursor.getString(2));
+                expense_date.add(cursor.getString(2));
+                expense_amount.add(cursor.getString(3));
             }
         }
     }

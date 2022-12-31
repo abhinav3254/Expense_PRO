@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.newapp.R;
@@ -25,30 +26,23 @@ public class AddFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_add, container, false);
 
-        MaterialButton button = view.findViewById(R.id.save_btn);
-        EditText title_et = view.findViewById(R.id.title);
-        EditText amount_et = view.findViewById(R.id.amount);
+        TextView add_in = view.findViewById(R.id.add_in);
+        TextView add_ex = view.findViewById(R.id.add_ex);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        getFragmentManager().beginTransaction().replace(R.id.frame_add,new ExpenseFragment()).commit();
+
+        add_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String title = title_et.getText().toString().trim();
-                String amount = amount_et.getText().toString().trim();
+//                getSupportFragmentManager().beginTransaction().replace(R.id.frame_main,new HomeFragment()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.frame_add,new IncomeFragment()).commit();
+            }
+        });
 
-                DBHelper dbHelper = new DBHelper(view.getContext());
-                boolean ans = dbHelper.addEntry(title,amount);
-                
-                if (ans) {
-                    Toast.makeText(view.getContext(), "Added", Toast.LENGTH_SHORT).show();
-
-                    FragmentTransaction fragmentTransaction = getActivity()
-                            .getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.frame_main, new HomeFragment());
-                    fragmentTransaction.commit();
-
-                } else {
-                    Toast.makeText(view.getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
-                }
+        add_ex.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().beginTransaction().replace(R.id.frame_add,new ExpenseFragment()).commit();
             }
         });
 

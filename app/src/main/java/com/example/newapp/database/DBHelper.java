@@ -12,11 +12,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private Context context;
     private static final String DATABASE_NAME = "one.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     private static final String TABLE_NAME = "abhinav";
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_TITLE = "expense_title";
     private static final String COLUMN_AMOUNT = "expense_amount";
+    private static final String COLUMN_DATE = "expense_date";
 
 
 
@@ -31,7 +32,8 @@ public class DBHelper extends SQLiteOpenHelper {
         String query = "CREATE TABLE "+TABLE_NAME+
                 " ("+COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 COLUMN_TITLE + " TEXT, "+
-                COLUMN_AMOUNT + " TEXT); ";
+                COLUMN_DATE + " TEXT, "+
+                COLUMN_AMOUNT + " REAL); ";
 
         sqLiteDatabase.execSQL(query);
 
@@ -44,11 +46,12 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 //    adding Data to the Database
-    public boolean addEntry (String title,String amount) {
+    public boolean addEntry (String title,Double amount,String date) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues =new ContentValues();
         contentValues.put(COLUMN_TITLE,title);
         contentValues.put(COLUMN_AMOUNT,amount);
+        contentValues.put(COLUMN_DATE,date);
 
         long res =database.insert(TABLE_NAME,null,contentValues);
 
