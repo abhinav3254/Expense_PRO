@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="amazing1">#61ADCC</color>
+    <color name="amazing2">#FB9096</color>
+    <color name="amazing3">#FFD900</color>
+    <color name="amazing4">#F59297</color>
+    <color name="amazing5">#0E9BF5</color>
 </resources>
