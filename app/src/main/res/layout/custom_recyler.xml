@@ -16,7 +16,7 @@
         android:layout_marginBottom="10dp"
         app:cardCornerRadius="20dp"
         app:cardElevation="0dp"
-        android:backgroundTint="#F3F3F4"
+        android:backgroundTint="@color/white"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,6 +57,11 @@
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:layout_margin="5dp"
+                />
+            <ImageView
+                android:id="@+id/custom_trend_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

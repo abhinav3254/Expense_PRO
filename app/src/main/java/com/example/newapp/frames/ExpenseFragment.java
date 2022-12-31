@@ -26,7 +26,6 @@ import java.util.Calendar;
 
 public class ExpenseFragment extends Fragment {
 
-    ExtraStuffs extraStuffs = new ExtraStuffs();
 
     View view;
     @Override
@@ -44,7 +43,7 @@ public class ExpenseFragment extends Fragment {
         date_et.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                extraStuffs.dateSet(view.getContext(),date_et);
+                ExtraStuffs.dateSet(view.getContext(),date_et);
             }
         });
 

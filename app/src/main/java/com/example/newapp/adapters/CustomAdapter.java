@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -49,6 +50,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
         if (Double.parseDouble(ans)<0) {
             holder.custom_amount.setTextColor(android.graphics.Color.rgb(253, 138, 138));
+            holder.custom_trend_img.setImageResource(R.drawable.down);
+        } else if (Double.parseDouble(ans)>=0) {
+            holder.custom_amount.setTextColor(android.graphics.Color.rgb(0, 138, 0));
+            holder.custom_trend_img.setImageResource(R.drawable.up);
         }
 
     }
@@ -61,6 +66,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView custom_amount,custom_title,custom_date;
+        ImageView custom_trend_img;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,6 +74,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             custom_amount = itemView.findViewById(R.id.custom_amount);
             custom_title = itemView.findViewById(R.id.custom_title);
             custom_date = itemView.findViewById(R.id.custom_date);
+            custom_trend_img = itemView.findViewById(R.id.custom_trend_img);
 
         }
     }
