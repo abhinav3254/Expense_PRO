@@ -1,5 +1,6 @@
 package com.example.newapp.frames;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,10 +10,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.newapp.R;
 import com.example.newapp.database.ProfileDBHelper;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
@@ -39,14 +43,14 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
 //                Intent intent = new Intent(getActivity(), ProfileActivity.class);
 //                startActivity(intent);
+                showBottomSheetDialog(view.getContext());
             }
         });
 
         edit_profile_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), ProfileActivity.class);
-//                startActivity(intent);
+                showBottomSheetDialog(view.getContext());
             }
         });
 
@@ -80,4 +84,32 @@ public class ProfileFragment extends Fragment {
         }
         return cursor.getCount()-1;
     }
+
+    public void showBottomSheetDialog (Context context) {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context);
+        bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog_layout);
+
+        EditText btm_sheet_tv = bottomSheetDialog.findViewById(R.id.btm_sheet_tv);
+        MaterialButton btm_sheet_btn = bottomSheetDialog.findViewById(R.id.btm_sheet_btn);
+
+        bottomSheetDialog.show();
+
+        btm_sheet_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if ((btm_sheet_tv.getText().toString().trim()).isEmpty()) {
+                    Toast.makeText(context, "Fields can't be empty", Toast.LENGTH_SHORT).show();
+                } else {
+                    profileDBHelper.addEntry(btm_sheet_tv.getText().toString().trim());
+                    Toast.makeText(context, "Saved " + btm_sheet_tv.getText().toString(), Toast.LENGTH_SHORT).show();
+                    bottomSheetDialog.dismiss();
+                }
+
+            }
+        });
+
+
+    }
+
 }
